@@ -19,7 +19,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Preview
+@Suppress("FunctionNaming")
 @Composable
 fun AppAndroidPreview() {
     App()
+
 }
