@@ -1,0 +1,35 @@
+.kotlin
+.gradle
+xcuserdata
+!src/**/build/
+.idea
+captures
+.externalNativeBuild
+.cxx
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+node_modules/
+
+# Gradle & Build Caches
+.gradle/
+build/
+**/build/
+
+# IDE Caches
+.idea/
+*.iml
+.DS_Store
+
+# iOS Caches & Derived Data
+iosApp/iosApp.xcodeproj/project.xcworkspace/xcuserdata/
+iosApp/iosApp.xcodeproj/xcuserdata/
+iosApp/DerivedData/
+.swiftpm/
+
+# Local Environment / Secrets
+local.properties
+.env
