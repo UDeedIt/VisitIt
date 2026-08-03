@@ -1,0 +1,45 @@
+name: VisitIt CI
+
+on:
+  push:
+    branches: [ "master", "develop", "feature/**", "hotfix/**" ]
+  pull_request:
+    branches: [ "master", "develop" ]
+
+jobs:
+  build:
+    name: Build & Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: "17"
+          # Removed 'cache: gradle' here in favor of the dedicated setup-gradle action below
+
+      - name: Setup Gradle & Cache
+        # Modern best practice for Gradle caching and wrapper validation
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run Detekt (Code Quality Check)
+        # --continue ensures it checks all modules even if one fails early
+        run: ./gradlew detekt --continue
+
+      - name: Run Android Lint
+        run: ./gradlew lintDebug
+
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Build Android & JVM Modules
+        # Using assembleDebug instead of full 'build'.
+        # A full 'build' on Ubuntu would fail trying to compile iOS Apple Silicon targets.
+        run: ./gradlew assembleDebug
