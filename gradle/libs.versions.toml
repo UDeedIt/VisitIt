@@ -15,8 +15,11 @@ kotlin = "2.4.10"
 kotlinx-coroutines = "1.11.0"
 material3 = "1.11.0-alpha07"
 detekt = "1.23.8"
+material3Version = "1.4.0"
+
 
 [libraries]
+androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3Version" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { module = "junit:junit", version.ref = "junit" }
